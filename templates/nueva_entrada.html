@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Entrada - Mi Diario Personal</title>
+</head>
+<body>
+    <h1>Nueva Entrada</h1>
+    <form method="POST">
+        <textarea name="contenido" rows="10" cols="50" required></textarea>
+        <br>
+        <input type="submit" value="Guardar Entrada">
+    </form>
+    <a href="{{ url_for('index') }}">Volver al Inicio</a>
+</body>
+</html>

@@ -6,6 +6,7 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///diario.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -50,6 +51,11 @@ def agregar_evento(entrada_id):
     db.session.add(nuevo_evento)
     db.session.commit()
     return redirect(url_for('ver_entrada', id=entrada_id))
+
+# Inicialización automática de la base de datos
+with app.app_context():
+    db.create_all()
+    print("Base de datos inicializada.")
 
 if __name__ == '__main__':
     app.run(debug=True)

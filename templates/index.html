@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Diario Personal</title>
+</head>
+<body>
+    <h1>Mi Diario Personal</h1>
+    <a href="{{ url_for('nueva_entrada') }}">Nueva Entrada</a>
+    <ul>
+    {% for entrada in entradas %}
+        <li>
+            <a href="{{ url_for('ver_entrada', id=entrada.id) }}">
+                {{ entrada.fecha.strftime('%Y-%m-%d %H:%M') }} - {{ entrada.contenido[:50] }}...
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

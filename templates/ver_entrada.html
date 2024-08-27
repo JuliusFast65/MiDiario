@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Entrada - Mi Diario Personal</title>
+</head>
+<body>
+    <h1>Entrada del {{ entrada.fecha.strftime('%Y-%m-%d %H:%M') }}</h1>
+    <p>{{ entrada.contenido }}</p>
+    
+    <h2>Eventos</h2>
+    <ul>
+    {% for evento in entrada.eventos %}
+        <li>{{ evento.nombre }}: {{ evento.detalles }}</li>
+    {% endfor %}
+    </ul>
+    
+    <h3>Agregar Evento</h3>
+    <form method="POST" action="{{ url_for('agregar_evento', entrada_id=entrada.id) }}">
+        <input type="text" name="nombre_evento" placeholder="Nombre del evento" required>
+        <input type="text" name="detalles_evento" placeholder="Detalles del evento" required>
+        <input type="submit" value="Agregar Evento">
+    </form>
+    
+    <a href="{{ url_for('index') }}">Volver al Inicio</a>
+</body>
+</html>
